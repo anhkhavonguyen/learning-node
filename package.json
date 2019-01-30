@@ -32,7 +32,10 @@
     "nodemon": "^1.18.3",
     "rxjs": "^6.0.0",
     "serve-favicon": "^2.5.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "bcrypt": "^0.8.3",
+    "mongoose": "^4.0.8",
+    "lodash": "^3.10.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

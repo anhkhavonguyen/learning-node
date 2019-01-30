@@ -1,8 +1,8 @@
-//const controller = require('./book.controller');
+const controller = require('../services/users/user.controller');
 const express = require('express');
 const router = express.Router();
 
-router.get('/allBooks', controller.allBooks);
-router.post('/saveUserBook', controller.saveUserBook);
+router.get('/users', controller.allBooks);
+router.post('/', controller.saveUserBook);
 
 module.exports = router;
