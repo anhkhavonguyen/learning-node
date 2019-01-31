@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var userRoutes = require('./users');
 
-router.get('/', (req, res) => {
-    res.send('Welcome!')
-});
+// router.get('/', function (req, res) {
+//     res.send('blah');
+//     console.log('Welcome');
+//   });
 
 //routes
-router.use('./users', require('./users').router);
+router.use('/users', userRoutes);
 
 //export
-module.exports.router = router;
+module.exports = router;
 
 
