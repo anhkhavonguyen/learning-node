@@ -1,8 +1,13 @@
-const controller = require('../services/users/user.controller');
-const express = require('express');
+const controller = require("../services/users/user.controller");
+const express = require("express");
 const router = express.Router();
 
-router.get('/users', controller.get);
-//router.post('/', controller.saveUserBook);
+router
+    .route("/user")
+    .get(function (req, res) {
+        res.send('Hello User!');
+    })
 
 module.exports = router;
+
+

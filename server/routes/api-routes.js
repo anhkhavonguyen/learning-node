@@ -1,16 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var userRoutes = require('./users');
+var postRoutes = require('./posts');
 
-// router.get('/', function (req, res) {
-//     res.send('blah');
-//     console.log('Welcome');
-//   });
-
-//routes
 router.use('/users', userRoutes);
+router.use('/posts', postRoutes);
 
-//export
 module.exports = router;
 
 
