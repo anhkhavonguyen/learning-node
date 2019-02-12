@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../shared/interfaces/user';
+import { User, UserModel } from '../../shared/interfaces/user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,18 +8,18 @@ import { UserService } from '../user.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[];
+  users: UserModel[];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    // this.allUsers();
+    this.allUsers();
   }
 
   allUsers() {
     this.userService.getUsers()
       .subscribe(
-        (users: User[]) => this.users = users
+        (res: any) => this.users = res.lists
       );
   }
 

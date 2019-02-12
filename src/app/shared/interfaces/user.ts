@@ -10,3 +10,9 @@ export interface User {
     title: string;
   };
 }
+
+export interface UserModel {
+  id: string;
+  username: string;
+  password: string;
+}

@@ -8,14 +8,14 @@ import { User } from '../shared/interfaces/user';
  providedIn: 'root'
 })
 export class UserService {
-  private API = 'http://localhost:3000/api/users';
+  private API = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this
               .http
-              .get<User[]>(`${this.API}/allUsers`)
+              .get<User[]>(`${this.API}/user`)
               .pipe(
                 tap(data => console.log(JSON.stringify(data))),
                 catchError(this.handleError)
