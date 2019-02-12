@@ -4,13 +4,13 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        //required: true,
     },
     description: String,
     category: {
         type: String,
-        required: true,
-        enum: ['High', 'Medium', 'Low']
+        //required: true,
+        //enum: ['High', 'Medium', 'Low']
     }
 });
 

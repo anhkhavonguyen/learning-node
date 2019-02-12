@@ -4,8 +4,11 @@ var postController = require("../services/posts/post.controller");
 
 router
     .route("/post")
-    .get(function (req, res) {
-        res.send('Hello Post!');
-    })
+    .get(postController.get)
+    .post(postController.post)
+
+router
+    .route("/:id")
+    .delete(postController.delete)
 
 module.exports = router;
