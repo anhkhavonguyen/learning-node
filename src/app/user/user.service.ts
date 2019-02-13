@@ -35,7 +35,7 @@ export class UserService {
   addUser(user: User): Observable<User> {
     return this
               .http
-              .post<User>(`${this.API}/addUser`, user)
+              .post<User>(`${this.API}/user`, user)
               .pipe(
                 tap(data => console.log(JSON.stringify(data))),
                 catchError(this.handleError)

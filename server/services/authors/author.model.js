@@ -1,15 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
-    username: String,
-    password: String
+var AuthorSchema = new Schema({
+    name: String
 });
 
-const UserList = module.exports = module.exports = mongoose.model('user', UserSchema);
+const AuthorList = module.exports = module.exports = mongoose.model('author', AuthorSchema);
 
 module.exports.getAllLists = (callback) => {
-    UserList.find(callback);
+    AuthorList.find(callback);
 }
 
 module.exports.addList = (newList, callback) => {
@@ -18,5 +17,5 @@ module.exports.addList = (newList, callback) => {
 
 module.exports.deleteListById = (id, callback) => {
     let query = { _id: id };
-    UserList.remove(query, callback);
+    AuthorList.remove(query, callback);
 }

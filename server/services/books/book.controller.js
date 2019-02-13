@@ -1,8 +1,7 @@
-const userList = require('../users/user.model');
-
+const bookList = require('../books/book.model');
 
 exports.get = function (req, res) {
-    userList.getAllLists((err, lists) => {
+    bookList.getAllLists((err, lists) => {
         if (err) {
             res.json({ success: false, message: `Failed to load all lists. Error: ${err}` });
         }
@@ -13,24 +12,24 @@ exports.get = function (req, res) {
     });
 };
 
-exports.post = function (req, res) {
-    let newUser = new userList({
-        username: req.body.username,
-        password: req.body.password
+exports.post = function (req, res, next) {
+    let newBook = new bookList({
+        title: req.body.title,
+        year: req.body.year
     });
-    userList.addList(newUser, (err, list) => {
+    bookList.addList(newBook, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to create a new list. Error: ${err}` });
-        } else {
-            res.json({ success: true, message: "Added successfully." });
         }
-    })
+        else
+            res.json({ success: true, message: "Added successfully." });
+    });
 }
 
 exports.delete = function (req, res, next) {
     let id = req.params.id;
     console.log(id);
-    userList.deleteListById(id, (err, list) => {
+    bookList.deleteListById(id, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to delete the list. Error: ${err}` });
         }

@@ -1,17 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var PostSchema = new Schema({
+var BookSchema = new Schema({
     title: String,
-    description: String,
-    category: String,
-    authors: { type: Schema.Types.ObjectId, ref: 'author' }
+    year: Number,
+    author: { type: Schema.Types.ObjectId, ref: 'author' }
 });
 
-const PostList = module.exports = mongoose.model('post', PostSchema);
+const BookList = module.exports = mongoose.model('book', BookSchema);
 
 module.exports.getAllLists = (callback) => {
-    PostList.find(callback);
+    BookList.find(callback).populate('author').exec();
 }
 
 module.exports.addList = (newList, callback) => {
@@ -20,6 +19,6 @@ module.exports.addList = (newList, callback) => {
 
 module.exports.deleteListById = (id, callback) => {
     let query = { _id: id };
-    PostList.remove(query, callback);
+    BookList.remove(query, callback);
 }
 
