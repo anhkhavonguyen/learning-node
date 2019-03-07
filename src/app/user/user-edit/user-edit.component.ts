@@ -64,7 +64,7 @@ export class UserEditComponent implements OnInit {
     };
     console.log(ID);
 
-    this.bookService.saveUserBook(ID)
+    this.bookService.add(ID)
       .subscribe(
         (data: any) => console.log(data),
         (err: any) => console.log(err),
