@@ -15,7 +15,7 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this
       .http
-      .get<Book[]>(`${this.API}/book`)
+      .get<Book[]>(`${this.API}`)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
@@ -25,7 +25,7 @@ export class BookService {
   add(newBook: {}): Observable<any> {
     return this
       .http
-      .post<Book>(`${this.API}/book`, newBook)
+      .post<Book>(`${this.API}`, newBook)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)

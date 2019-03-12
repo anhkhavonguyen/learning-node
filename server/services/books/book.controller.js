@@ -1,12 +1,17 @@
 const bookList = require('../books/book.model');
 
 exports.get = function (req, res) {
-    bookList.getAllLists((err, lists) => {
+    var pageNo = parseInt(req.query.pageNo);
+    var pageSize = parseInt(req.query.pageSize);
+    bookList.get(pageNo, pageSize, (err, data) => {
         if (err) {
             res.json({ success: false, message: `Failed to load all lists. Error: ${err}` });
         }
         else {
-            res.write(JSON.stringify({ success: true, lists: lists }, null, 2));
+            if (data) {
+                var totalPages = Math.ceil(data.length / pageSize);
+            }
+            res.write(JSON.stringify({ success: true, data: data, totalPages: totalPages }, null, 2));
             res.end();
         }
     });
@@ -15,9 +20,10 @@ exports.get = function (req, res) {
 exports.post = function (req, res, next) {
     let newBook = new bookList({
         title: req.body.title,
-        year: req.body.year
+        year: req.body.year,
+        author: req.body.author
     });
-    bookList.addList(newBook, (err, list) => {
+    bookList.add(newBook, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to create a new list. Error: ${err}` });
         }
@@ -28,8 +34,7 @@ exports.post = function (req, res, next) {
 
 exports.delete = function (req, res, next) {
     let id = req.params.id;
-    console.log(id);
-    bookList.deleteListById(id, (err, list) => {
+    bookList.delete(id, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to delete the list. Error: ${err}` });
         }

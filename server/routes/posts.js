@@ -3,7 +3,7 @@ const router = express.Router();
 var postController = require("../services/posts/post.controller");
 
 router
-    .route("/post")
+    .route("/")
     .get(postController.get)
     .post(postController.post)
 

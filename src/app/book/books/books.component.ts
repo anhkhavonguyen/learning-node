@@ -19,7 +19,7 @@ export class BooksComponent implements OnInit {
   allBooks() {
     this.bookService.getBooks()
       .subscribe(
-        (res: any) => this.books = res.lists
+        (res: any) => this.books = res.data
       );
   }
 }

@@ -1,24 +1,36 @@
 const userList = require('../users/user.model');
 
-
 exports.get = function (req, res) {
-    userList.getAllLists((err, lists) => {
+    var pageNo = parseInt(req.query.pageNo);
+    var pageSize = parseInt(req.query.pageSize);
+
+    userList.get(pageNo, pageSize, (err, data) => {
         if (err) {
             res.json({ success: false, message: `Failed to load all lists. Error: ${err}` });
         }
         else {
-            res.write(JSON.stringify({ success: true, lists: lists }, null, 2));
+            if (data) {
+                var totalPages = Math.ceil(data.length / pageSize);
+            }
+            res.write(JSON.stringify({ success: true, data: data, totalPages: totalPages }, null, 2));
             res.end();
         }
     });
 };
 
 exports.post = function (req, res) {
+    var password = require('crypto').createHash('sha1').update(req.body.password).digest('base64');
     let newUser = new userList({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        gender: req.body.gender,
         username: req.body.username,
-        password: req.body.password
+        password: password,
+        avatar: req.body.avatar,
     });
-    userList.addList(newUser, (err, list) => {
+
+    userList.add(newUser, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to create a new list. Error: ${err}` });
         } else {
@@ -29,8 +41,7 @@ exports.post = function (req, res) {
 
 exports.delete = function (req, res, next) {
     let id = req.params.id;
-    console.log(id);
-    userList.deleteListById(id, (err, list) => {
+    userList.delete(id, (err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to delete the list. Error: ${err}` });
         }
