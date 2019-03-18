@@ -52,3 +52,10 @@ exports.delete = function (req, res, next) {
             res.json({ success: false });
     })
 };
+
+
+// router.get('/search', async (ctx, next) => {
+//     const { term, offset } = ctx.request.query
+//     ctx.body = await search.queryTerm(term, offset)
+//   }
+// )
