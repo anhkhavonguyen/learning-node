@@ -12,9 +12,9 @@ import { Book } from '../../shared/interfaces/book';
 })
 export class UserEditComponent implements OnInit {
   foods: any = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
   ];
 
   selectedBook: any;
@@ -25,9 +25,9 @@ export class UserEditComponent implements OnInit {
   favorite: any;
 
   constructor(private userService: UserService,
-              private bookService: BookService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private bookService: BookService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     // const param = +this.route.snapshot.paramMap.get('id');
@@ -44,8 +44,8 @@ export class UserEditComponent implements OnInit {
       .subscribe(
         (results: User) => {
           this.user = results;
-          this.readingList = results.Reading;
-          this.favorite = results.Favorite;
+          this.readingList = {}; // results.Reading;
+          this.favorite = {}; // results.Favorite;
         }
       );
   }
@@ -69,7 +69,7 @@ export class UserEditComponent implements OnInit {
         (data: any) => console.log(data),
         (err: any) => console.log(err),
         () => {
-          this.selectedBook = {id: -1};
+          this.selectedBook = { id: -1 };
           this.getUser(this.user.id);
         }
       );
@@ -89,7 +89,7 @@ export class UserEditComponent implements OnInit {
         () => {
           this.selectedFav = { id: -1 };
           this.getUser(this.user.id);
-       }
+        }
       );
   }
 

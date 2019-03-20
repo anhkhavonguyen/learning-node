@@ -1,29 +1,58 @@
-<div fxLayout="row"
-     fxLayoutAlign="space-around start"
-     class="container-top">
+<div fxLayout="row" fxLayoutAlign="space-around start" class="container-top">
   <div fxFlex="60%">
-    <form #addUserForm="ngForm" (ngSubmit)="saveUser(addUserForm.value)">
-    <mat-card>
+    <form [formGroup]="addValueForm" (ngSubmit)="add()">
+      <mat-card>
         <mat-card-header>Add User</mat-card-header>
-      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
-          <!--name-->
+        <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+          <!--firstName-->
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput
-                   placeholder="Name"
-                   name="name"
-                   ngModel>
+            <mat-label>firstName</mat-label>
+            <input matInput placeholder="firstName" formControlName="firstName">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <!--lastName-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>lastName</mat-label>
+            <input matInput placeholder="lastName" formControlName="lastName">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <!--email-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>email</mat-label>
+            <input matInput placeholder="email" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          <!--gender-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>gender</mat-label>
+            <input matInput placeholder="gender" formControlName="gender">
+            <mat-icon matSuffix>gender</mat-icon>
+          </mat-form-field>
+          <!--username-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>username</mat-label>
+            <input matInput placeholder="username" formControlName="username">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <!--password-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>password</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix>password</mat-icon>
+          </mat-form-field>
+          <!--avatar-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>avatar</mat-label>
+            <input matInput placeholder="avatar" formControlName="avatar">
             <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
           <mat-card-actions fxLayout="column">
-            <button mat-raised-button
-                    color="primary"
-                    type="submit">
+            <button mat-raised-button color="primary" type="submit">
               Submit
             </button>
-        </mat-card-actions>
-     </mat-card-content>
-    </mat-card>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
     </form>
   </div>
 </div>

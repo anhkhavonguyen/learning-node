@@ -1,4 +1,5 @@
 const userList = require('../users/user.model');
+const esSearch = require('../search/search');
 
 exports.get = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
@@ -53,6 +54,10 @@ exports.delete = function (req, res, next) {
     })
 };
 
+
+exports.search = function (req, res, next) {
+    await esSearch.queryTerm(term, offset);
+}
 
 // router.get('/search', async (ctx, next) => {
 //     const { term, offset } = ctx.request.query

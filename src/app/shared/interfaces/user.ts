@@ -1,14 +1,12 @@
 export interface User {
-  id?: number;
-  name: string;
-  Reading?: {
-    title: string;
-    author: string;
-    year: number;
-  };
-  Favorite?: {
-    title: string;
-  };
+  firstName: String;
+  lastName: String;
+  email: String;
+  gender: String;
+  username: String;
+  password: String;
+  avatar: String;
+  id: number;
 }
 
 export interface UserModel {
