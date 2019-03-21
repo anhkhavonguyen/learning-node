@@ -55,9 +55,9 @@ exports.delete = function (req, res, next) {
 };
 
 
-exports.search = function (req, res, next) {
-    await esSearch.queryTerm(term, offset);
-}
+// exports.search = function (req, res, next) {
+//     await esSearch.queryTerm(term, offset);
+// }
 
 // router.get('/search', async (ctx, next) => {
 //     const { term, offset } = ctx.request.query
