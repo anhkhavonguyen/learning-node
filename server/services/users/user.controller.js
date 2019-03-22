@@ -1,5 +1,6 @@
 const userList = require('../users/user.model');
 const esSearch = require('../search/search');
+const bcrypt = require('bcrypt');
 
 exports.get = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
@@ -20,7 +21,7 @@ exports.get = function (req, res) {
 };
 
 exports.post = function (req, res) {
-    var password = require('crypto').createHash('sha1').update(req.body.password).digest('base64');
+    var password = bcrypt.hash(req.body.password, 10);
     let newUser = new userList({
         firstName: req.body.firstName,
         lastName: req.body.lastName,

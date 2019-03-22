@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -12,6 +14,14 @@ var UserSchema = new Schema({
 });
 
 const UserList = module.exports = mongoose.model('user', UserSchema);
+
+module.exports.getBy = (condition) => {
+    UserList.findOne({ condition });
+}
+
+module.exports.validatePassword = (password, user) => {
+    return bcrypt.compare(password, user.password);
+}
 
 module.exports.get = (pageNo, pageSize, callback) => {
     var query = {};
