@@ -8,6 +8,9 @@ const routes: Routes = [
   },
   { path: 'users',
     loadChildren: './user/user.module#UserModule'
+  },
+  { path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule'
   }
 ];
 
